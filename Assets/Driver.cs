@@ -8,10 +8,21 @@ public class Driver : MonoBehaviour
    
     [SerializeField] float fltSteerSpeed = 100f;
     [SerializeField] float fltMoveSpeed = 20f;
+    [SerializeField] float fltSlowSpeed = 15f;
+    [SerializeField] float fltBoostSpeed = 30f;
 
-    void Start()
+    void OnCollisionEnter2D(Collision2D other) 
     {
-        
+        fltMoveSpeed = fltSlowSpeed;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.tag == "Boost")
+        {
+            Debug.Log("you are boosting, woooh");
+            fltMoveSpeed = fltBoostSpeed;
+        }
     }
 
     // Update is called once per frame
